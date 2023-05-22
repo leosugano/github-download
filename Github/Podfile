@@ -1,0 +1,16 @@
+platform :ios, '13.0'
+use_frameworks!
+
+target 'Github' do
+  pod 'Alamofire'
+  pod 'UIScrollView-InfiniteScroll', '~> 1.3.0'
+  pod 'SnapKit'
+
+end
+
+target 'GithubTests' do
+  pod 'Quick'
+  pod 'Nimble'
+  pod 'SnapshotTesting', '~> 1.8.1'
+
+end
