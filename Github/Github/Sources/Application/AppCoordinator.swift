@@ -68,7 +68,7 @@ class AppCoordinator: Coordinator {
                    showPositiveButton: Bool = true,
                    titlePositiveButton: String = "alertYes".localized,
                    showNegativeButton: Bool = true,
-                   _ completion: (()->())? = nil) {
+                   _ completion: (() -> Void)? = nil) {
         
         let alert = UIAlertController.createAlert(message: message,
                                                   showPositiveButton: showPositiveButton,
@@ -81,7 +81,7 @@ class AppCoordinator: Coordinator {
     
     func showErrorView(_ message: String?,
                        showTryAgainButton: Bool,
-                       completion: (()->())? = nil) {
+                       completion: (() -> Void)? = nil) {
         let errorView = ErrorView()
         errorView.setupErrorView(message: message, showTryAgain: showTryAgainButton, completionHandler: {
             completion?()

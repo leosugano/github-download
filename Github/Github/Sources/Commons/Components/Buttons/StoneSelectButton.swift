@@ -9,7 +9,7 @@ import UIKit
 
 class StoneSelectButton: UIButton {
     
-    //MARK: - VARS
+    // MARK: - VARS
     var type: FilterTypeViewModel?
     
     // MARK: - Life cycle

@@ -36,7 +36,11 @@ class LoadingView: UIView {
     }
     
     func loadSpinner(_ load: Bool) {
-        load ? spinner.startAnimating() : spinner.stopAnimating()
+        spinner.stopAnimating()
+        
+        if load {
+            spinner.startAnimating()
+        }
     }
 
 }

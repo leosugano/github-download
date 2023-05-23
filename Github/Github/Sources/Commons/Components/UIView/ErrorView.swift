@@ -49,7 +49,7 @@ class ErrorView: UIView {
         
     // MARK: - Vars
     weak var delegate: StoneStatusViewDelegate?
-    var completionHandler: (()->())?
+    var completionHandler: (() -> Void)?
     
     // MARK: - Inits
     init() {
@@ -91,7 +91,7 @@ class ErrorView: UIView {
     }
     
     // MARK: - Setups
-    func setupErrorView(message: String?, showTryAgain: Bool, completionHandler: (() -> ())? = nil) {
+    func setupErrorView(message: String?, showTryAgain: Bool, completionHandler: (() -> Void)? = nil) {
         self.messageLabel.text = message
         self.tryAgainButton.isHidden = !showTryAgain
         self.completionHandler = completionHandler

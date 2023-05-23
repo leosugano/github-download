@@ -32,7 +32,7 @@ class HomeTableViewCell: UITableViewCell {
         return label
     }()
     
-    //MARK: - Vars
+    // MARK: - Vars
     var postImageURL: String?
     
     // MARK: - Init

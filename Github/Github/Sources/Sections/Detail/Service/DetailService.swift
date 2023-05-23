@@ -9,7 +9,7 @@ import Alamofire
 
 protocol DetailServiceProtocol {
     func getCharacterDetail(url: String, id: Int,
-                       completion: @escaping (ServiceResult<CharacterDatasResponseModel, NetworkError>) -> Void)
+                            completion: @escaping (ServiceResult<CharacterDatasResponseModel, NetworkError>) -> Void)
 }
 
 class DetailService: DetailServiceProtocol {
@@ -23,13 +23,15 @@ class DetailService: DetailServiceProtocol {
     }
     
     // MARK: - Func
-    func getCharacterDetail(url: String, id: Int,
-                       completion: @escaping (ServiceResult<CharacterDatasResponseModel, NetworkError>) -> Void) {
+    func getCharacterDetail(url: String,
+                            id: Int,
+                            completion: @escaping (ServiceResult<CharacterDatasResponseModel, NetworkError>) -> Void) {
         
-        if (UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet)) {
+        if UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet) {
             
             guard let character = DatabaseController.getCharacterById(id) else {
-                completion(.failure(NetworkError(code: Keys.errorCodeNoDatabase, message:"noInternetError".localized)))
+                let error: NetworkError = NetworkError(code: Keys.errorCodeNoDatabase, message: "noInternetError".localized)
+                completion(.failure(error))
                 return
             }
             completion(.success(character))

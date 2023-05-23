@@ -7,7 +7,7 @@
 
 import Alamofire
 
-public enum ServiceResult<Success, Failure> where Failure : Error  {
+public enum ServiceResult<Success, Failure> where Failure: Error {
     case success(Success)
     case failure(Failure)
 }
@@ -39,4 +39,3 @@ class ResultMapper {
                              message: error.errorDescription))
     }
 }
-

@@ -52,8 +52,7 @@ class FilterViewControllerLayout: BaseViewController {
         self.view.addSubview(textFieldView)
         self.view.addSubview(statusView)
     }
-    
-  
+      
     // MARK: - SetConstraints
     override func setConstraints() {
         super.setConstraints()
@@ -63,7 +62,7 @@ class FilterViewControllerLayout: BaseViewController {
     }
     
     private func setFilterButtonConstraint() {
-        self.filterButton.snp.remakeConstraints{ make in
+        self.filterButton.snp.remakeConstraints { make in
             make.bottom.equalToSuperview().inset(Margin.getSafeAreas().bottom)
             make.leading.equalToSuperview().inset(Margin.getSafeAreas().left)
             make.trailing.equalToSuperview().inset(Margin.getSafeAreas().right)
@@ -72,7 +71,7 @@ class FilterViewControllerLayout: BaseViewController {
     }
     
     private func setTextFieldViewConstraints() {
-        self.textFieldView.snp.remakeConstraints{ make in
+        self.textFieldView.snp.remakeConstraints { make in
             make.top.equalTo(navigationBar.snp.bottom).offset(Margin.normalMargin)
             make.leading.equalToSuperview().inset(Margin.getSafeAreas().left + Margin.extraMargin)
             make.trailing.equalToSuperview().inset(Margin.getSafeAreas().right + Margin.extraMargin)
@@ -80,7 +79,7 @@ class FilterViewControllerLayout: BaseViewController {
     }
     
     private func setStatusViewConstraints() {
-        self.statusView.snp.remakeConstraints{ make in
+        self.statusView.snp.remakeConstraints { make in
             make.top.equalTo(textFieldView.snp.bottom).offset(Margin.normalMargin)
             make.leading.equalToSuperview().inset(Margin.getSafeAreas().left + Margin.extraMargin)
             make.trailing.equalToSuperview().inset(Margin.getSafeAreas().right + Margin.extraMargin)
@@ -98,4 +97,3 @@ class FilterViewControllerLayout: BaseViewController {
     // MARK: - Actions
     @objc func didTapFilter() {}
 }
-

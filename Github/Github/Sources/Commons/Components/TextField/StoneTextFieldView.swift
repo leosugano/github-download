@@ -158,6 +158,4 @@ class StoneTextFieldView: UIView, UITextFieldDelegate {
     private func showErrorLabel(_ show: Bool) {
         errorLabel.isHidden = !show
     }
-    
-
 }

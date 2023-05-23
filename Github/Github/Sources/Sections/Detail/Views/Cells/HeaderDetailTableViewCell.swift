@@ -1,4 +1,3 @@
-
 //
 //  HeaderDetail.swift
 //  StoneChallenge

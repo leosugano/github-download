@@ -3,14 +3,12 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var appCoordinator : AppCoordinator?
+    var appCoordinator: AppCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        for argument in CommandLine.arguments {
-            if argument == "-uitesting" {
-                return
-            }
+        for argument in CommandLine.arguments where argument == "-uitesting" {
+            return
         }
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -36,4 +34,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     #endif
     }
 }
-

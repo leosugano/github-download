@@ -14,7 +14,7 @@ class Provider {
     func getProvider<T: Codable>(_ url: String,
                                  parameters: Parameters?,
                                  encoding: ParameterEncoding?,
-                                 handler: @escaping (ServiceResult<T, NetworkError>) -> Void){
+                                 handler: @escaping (ServiceResult<T, NetworkError>) -> Void) {
         
         let url = Keys.BaseUrl + url
         

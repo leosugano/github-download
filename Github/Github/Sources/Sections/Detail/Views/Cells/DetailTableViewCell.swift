@@ -76,8 +76,7 @@ class DetailTableViewCell: UITableViewCell {
             make.leading.equalTo(detailTitleLabel.snp.trailing).offset(Margin.miniMargin)
         }
     }
-    
-   
+       
     // MARK: - Func
     func setupCellWithCharacter(_ detail: DetailViewModelResponse) {
         detailTitleLabel.text = detail.title

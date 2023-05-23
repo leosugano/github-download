@@ -19,7 +19,7 @@ extension UIView {
         gradientLayer.frame = self.bounds
         
         removeDegradeBackground()
-        self.layer.insertSublayer(gradientLayer, at:0)
+        self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     func removeDegradeBackground() {

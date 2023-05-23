@@ -15,7 +15,6 @@ class DatabaseController {
     private static let entityName = "Characters"
     private static let pageKey = "page"
     static let imageCache = NSCache<NSString, AnyObject>()
-
     
     private init() {}
     
@@ -27,7 +26,7 @@ class DatabaseController {
         
         let container = NSPersistentContainer(name: entityName)
         
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 print("Unresolved error \(error), \(error.userInfo)")
             }
@@ -42,9 +41,7 @@ class DatabaseController {
             do {
                 try context.save()
                 print("Data Saved to Context")
-            } catch {
-                let nserror = error as NSError
-            }
+            } catch { }
         }
     }
     
@@ -118,7 +115,7 @@ class DatabaseController {
             try DatabaseController.getContext().execute(deleteALL)
             DatabaseController.saveContext()
         } catch {
-            print ("There is an error in deleting records")
+            print("There is an error in deleting records")
         }
     }
     

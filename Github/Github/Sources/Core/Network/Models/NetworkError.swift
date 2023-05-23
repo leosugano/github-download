@@ -11,4 +11,3 @@ struct NetworkError: Error {
     var code: String?
     var message: String?
 }
-

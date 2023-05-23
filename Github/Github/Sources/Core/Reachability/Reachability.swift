@@ -29,14 +29,14 @@ import Foundation
 import SystemConfiguration
 
 public enum ReachabilityError: Error {
-    case FailedToCreateWithAddress(sockaddr_in)
-    case FailedToCreateWithHostname(String)
-    case UnableToSetCallback
-    case UnableToSetDispatchQueue
+    case failedToCreateWithAddress(sockaddr_in)
+    case failedToCreateWithHostname(String)
+    case unableToSetCallback
+    case unableToSetDispatchQueue
 }
 
 @available(*, unavailable, renamed: "Notification.Name.reachabilityChanged")
-public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
+public let reachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
 extension Notification.Name {
     public static let reachabilityChanged = Notification.Name("reachabilityChanged")
@@ -93,36 +93,32 @@ public class Reachability {
     }
     
     public var connection: Connection {
-        set {}
+        guard isReachableFlagSet else { return .none }
         
-        get {
-            guard isReachableFlagSet else { return .none }
-
-            // If we're reachable, but not on an iOS device (i.e. simulator), we must be on WiFi
-            guard isRunningOnDevice else { return .wifi }
-
-            var connection = Connection.none
-
-            if !isConnectionRequiredFlagSet {
+        // If we're reachable, but not on an iOS device (i.e. simulator), we must be on WiFi
+        guard isRunningOnDevice else { return .wifi }
+        
+        var connection = Connection.none
+        
+        if !isConnectionRequiredFlagSet {
+            connection = .wifi
+        }
+        
+        if isConnectionOnTrafficOrDemandFlagSet {
+            if !isInterventionRequiredFlagSet {
                 connection = .wifi
             }
-
-            if isConnectionOnTrafficOrDemandFlagSet {
-                if !isInterventionRequiredFlagSet {
-                    connection = .wifi
-                }
-            }
-
-            if isOnWWANFlagSet {
-                if !allowsCellularConnection {
-                    connection = .none
-                } else {
-                    connection = .cellular
-                }
-            }
-
-            return connection
         }
+        
+        if isOnWWANFlagSet {
+            if !allowsCellularConnection {
+                connection = .none
+            } else {
+                connection = .cellular
+            }
+        }
+        
+        return connection
     }
 
     var previousFlags: SCNetworkReachabilityFlags?
@@ -176,12 +172,12 @@ public class Reachability {
         context.info = UnsafeMutableRawPointer(Unmanaged<Reachability>.passUnretained(self).toOpaque())
         if !SCNetworkReachabilitySetCallback(reachabilityRef, callback, &context) {
             stopNotifier()
-            throw ReachabilityError.UnableToSetCallback
+            throw ReachabilityError.unableToSetCallback
         }
 
         if !SCNetworkReachabilitySetDispatchQueue(reachabilityRef, reachabilitySerialQueue) {
             stopNotifier()
-            throw ReachabilityError.UnableToSetDispatchQueue
+            throw ReachabilityError.unableToSetDispatchQueue
         }
 
         // Perform an initial check
@@ -200,21 +196,6 @@ public class Reachability {
     }
 
     // MARK: - *** Connection test methods ***
-    var description: String {
-
-        let W = isRunningOnDevice ? (isOnWWANFlagSet ? "W" : "-") : "X"
-        let R = isReachableFlagSet ? "R" : "-"
-        let c = isConnectionRequiredFlagSet ? "c" : "-"
-        let t = isTransientConnectionFlagSet ? "t" : "-"
-        let i = isInterventionRequiredFlagSet ? "i" : "-"
-        let C = isConnectionOnTrafficFlagSet ? "C" : "-"
-        let D = isConnectionOnDemandFlagSet ? "D" : "-"
-        let l = isLocalAddressFlagSet ? "l" : "-"
-        let d = isDirectFlagSet ? "d" : "-"
-
-        return "\(W)\(R) \(c)\(t)\(i)\(C)\(D)\(l)\(d)"
-    }
-
     func reachabilityChanged() {
         guard previousFlags != flags else { return }
 
@@ -251,7 +232,7 @@ public class Reachability {
         return flags.contains(.connectionOnDemand)
     }
     var isConnectionOnTrafficOrDemandFlagSet: Bool {
-        return !flags.intersection([.connectionOnTraffic, .connectionOnDemand]).isEmpty
+        return flags.isDisjoint(with: [.connectionOnTraffic, .connectionOnDemand])
     }
     var isTransientConnectionFlagSet: Bool {
         return flags.contains(.transientConnection)

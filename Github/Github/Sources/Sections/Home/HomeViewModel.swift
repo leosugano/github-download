@@ -48,7 +48,7 @@ class HomeViewModel: HomeViewModelProvider {
     
     // MARK: - Gets
     func getDatas() {
-        if (UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet)) {
+        if UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet) {
             self.resetPagination()
         }
         
@@ -122,7 +122,7 @@ class HomeViewModel: HomeViewModelProvider {
     }
     
     func getCharacterByIndex(_ index: Int) -> CharacterDatasResponseModel? {
-        guard self.characters.count > 0, index < characters.count else {
+        guard !self.characters.isEmpty, index < characters.count else {
             return nil
         }
         
@@ -150,7 +150,7 @@ class HomeViewModel: HomeViewModelProvider {
     func showLastPageAlert() {
         var message: String = "lastDatasMessage".localized
         
-        if (UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet)) {
+        if UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet) {
             message = "turnOnInternet".localized
         }
         self.coordinator?.showAlert(message: message, titlePositiveButton: "ok".localized, showNegativeButton: false)
@@ -162,8 +162,7 @@ class HomeViewModel: HomeViewModelProvider {
             self.coordinator?.goToFilterViewController()
 
         } else {
-            self.coordinator?.showAlert(message: "alertRemoveFilterTitle".localized, {
-                [weak self] in
+            self.coordinator?.showAlert(message: "alertRemoveFilterTitle".localized, { [weak self] in
                 guard let self = self else { return }
                 self.filter = nil
                 self.resetPagination()

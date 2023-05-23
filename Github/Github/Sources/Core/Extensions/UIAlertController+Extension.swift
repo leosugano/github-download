@@ -13,7 +13,7 @@ extension UIAlertController {
                            showPositiveButton: Bool = true,
                            titlePositiveButton: String,
                            showNegativeButton: Bool = true,
-                           completion: (()->())? = nil) -> UIAlertController {
+                           completion: (() -> Void)? = nil) -> UIAlertController {
         
         let alert = UIAlertController(title: "alertTitle".localized, message: message, preferredStyle: .alert)
         alert.view.backgroundColor = .white

@@ -15,8 +15,8 @@ final class Network {
                      encoding: ParameterEncoding? = URLEncoding.default,
                      headers: HTTPHeaders? = nil,
                      interceptor: RequestInterceptor? = nil,
-                     successHandler: @escaping (Data)->(),
-                     errorHandler: @escaping (AFError) -> ()) {
+                     successHandler: @escaping (Data) -> Void,
+                     errorHandler: @escaping (AFError) -> Void) {
         
         AF.request(url,
                    method: method,
@@ -34,4 +34,3 @@ final class Network {
         }
     }
 }
-

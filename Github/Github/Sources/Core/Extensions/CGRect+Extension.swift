@@ -20,5 +20,3 @@ extension CGRect {
         return CGRect(x: 0, y: (windows.safeAreaInsets.top + NavBar.height), width: screenSize.width, height: height)
     }
 }
-
-

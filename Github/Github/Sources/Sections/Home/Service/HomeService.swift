@@ -32,7 +32,7 @@ class HomeService: HomeServiceProtocol {
                        parameters: FilterSelectModel,
                        completion: @escaping (ServiceResult<CharacterResponseModel, NetworkError>) -> Void) {
         
-        if (UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet)) {
+        if UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet) {
             self.getCharacters(filter: nil, completion: completion)
             return
         }
@@ -46,7 +46,7 @@ class HomeService: HomeServiceProtocol {
     func getCharactersWithFilter(url: String,
                                  filter: FilterSelectModel,
                                  completion: @escaping (ServiceResult<CharacterResponseModel, NetworkError>) -> Void) {
-        if (UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet)) {
+        if UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet) {
             self.getCharacters(filter: filter, completion: completion)
             return
         }
@@ -62,14 +62,15 @@ class HomeService: HomeServiceProtocol {
         let info = CharacterInfoResponseModel(count: nil, pages: nil, nextPage: nil, previousPage: nil)
         var characters = DatabaseController.getAllCharacter()
         
-        if filter != nil {
+        if let filter = filter {
             characters = characters.filter({ value in
-                value.status?.lowercased() == filter?.status?.lowercased() && (value.name?.lowercased().contains(filter?.name?.lowercased() ?? "") ?? false)
+                value.status?.lowercased() == filter.status?.lowercased() && (value.name?.lowercased().contains(filter.name?.lowercased() ?? "") ?? false)
             })
         }
         
         if characters.isEmpty {
-            completion(.failure(NetworkError(code: Keys.errorCodeNoDatabase, message:"noInternetError".localized)))
+            let error: NetworkError = NetworkError(code: Keys.errorCodeNoDatabase, message: "noInternetError".localized)
+            completion(.failure(error))
         }
         
         completion(.success(CharacterResponseModel(info: info, characters: characters)))

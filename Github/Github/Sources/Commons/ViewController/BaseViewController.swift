@@ -48,7 +48,7 @@ class BaseViewController: UIViewController {
     
     private func setNavigationBarConstraints() {
         DispatchQueue.main.async {
-            self.navigationBar.snp.remakeConstraints{ make in
+            self.navigationBar.snp.remakeConstraints { make in
                 make.top.equalToSuperview().inset(Margin.getSafeAreas().top)
                 make.leading.equalToSuperview().inset(Margin.getSafeAreas().left)
                 make.trailing.equalToSuperview().inset(Margin.getSafeAreas().right)
@@ -62,14 +62,18 @@ class BaseViewController: UIViewController {
     }
     
     private func setNavigationBarActions() {
-        self.navigationBar.actionLeftButton = didTapLeftButton
-        self.navigationBar.actionRightButton = didTapRightButton
+        navigationBar.actionLeftButton = didTapLeftButton
+        navigationBar.actionRightButton = didTapRightButton
     }
     
     // MARK: - Loading
     func showLoading(_ loading: Bool) {        
         loadingView.loadSpinner(loading)
-        loading ? self.view.addSubview(loadingView) : self.loadingView.removeFromSuperview()
+        loadingView.removeFromSuperview()
+        
+        if loading {
+            self.view.addSubview(loadingView)
+        }
     }
     
     // MARK: - Life cycle

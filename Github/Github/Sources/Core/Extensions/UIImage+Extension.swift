@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension UIImage {
         
     static func loadImageUsingCacheWithUrlString(_ urlString: String,
@@ -18,8 +17,8 @@ extension UIImage {
         }
         
         guard let url = URL(string: urlString) else { return }
-        session?.dataTask(with: url, completionHandler: { (data, response, error) in
-            if let error = error {
+        session?.dataTask(with: url, completionHandler: { (data, _, error) in
+            if error != nil {
                 return
             }
             
