@@ -1,8 +1,8 @@
 //
 //  DetailTableViewCell.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 04/04/23.
+//  Created by Leonardo Sugano on 23/05/23.
 //
 
 import SnapKit
@@ -12,22 +12,23 @@ class DetailTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
     
-    private lazy var detailTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: FontSize.normalFont)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.textColor = .black
-        return label
+    private lazy var mainView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.borderColor = UIColor.gray.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 8
+        return view
     }()
     
-    private lazy var detailValueLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: FontSize.normalFont, weight: .regular)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.textColor = .black
-        return label
+    private lazy var verticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 2
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        return stackView
     }()
     
     // MARK: - Init
@@ -48,38 +49,68 @@ class DetailTableViewCell: UITableViewCell {
     }
     
     private func setupCell() {
-        self.selectionStyle = .none
-        self.addSubviews()
-        self.addConstraints()
+        selectionStyle = .none
+        addSubviews()
+        addConstraints()
     }
     
-    func addSubviews() {
-        self.addSubview(detailTitleLabel)
-        self.addSubview(detailValueLabel)
+    private func addSubviews() {
+        contentView.addSubview(mainView)
+        mainView.addSubview(verticalStackView)
     }
     
-    func addConstraints() {
-        addTitleLabelConstraints()
-        addValueLabelConstraints()
+    private func addConstraints() {
+        addMainViewContraints()
+        addVericalStackViewConstraints()
     }
     
-    private func addTitleLabelConstraints() {
-        detailTitleLabel.snp.remakeConstraints { make in
-            make.top.bottom.leading.equalToSuperview().inset(Margin.normalMargin)
+    private func addMainViewContraints() {
+        mainView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview().inset(4)
         }
     }
     
-    private func addValueLabelConstraints() {
-        detailValueLabel.snp.remakeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(Margin.normalMargin)
-            make.trailing.greaterThanOrEqualTo(self.snp.trailing).offset(Margin.normalMargin)
-            make.leading.equalTo(detailTitleLabel.snp.trailing).offset(Margin.miniMargin)
+    private func addVericalStackViewConstraints() {
+        verticalStackView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview().inset(4)
+            make.centerX.equalToSuperview()
         }
     }
        
+    // MARK: - Vars
+    private var repo: UserRepositoryResponseViewModel?
+    
     // MARK: - Func
-    func setupCellWithCharacter(_ detail: DetailViewModelResponse) {
-        detailTitleLabel.text = detail.title
-        detailValueLabel.text = detail.value
+    func setupCellWithDetails(repo: UserRepositoryResponseViewModel) {
+        self.repo = repo
+
+        cleanVerticalStackView()
+        createLabel(title: "Repo Nome: ", value: repo.nameRepo)
+        createLabel(title: "Nome completo: ", value: repo.fullName)
+        createLabel(title: "Desc: ", value: repo.desc)
+        createLabel(title: "Criado: ", value: repo.createdAt?.getFormattedDate(format: Keys.isoDateFormat))
+        createLabel(title: "Licença: ", value: repo.license?.name)
+        createLabel(title: "URL: ", value: repo.svnUrl, didTap: true)
+    }
+    
+    private func createLabel(title: String, value: String?, didTap: Bool = false) {
+        guard let value = value, !value.isEmpty else { return }
+        let color: UIColor = didTap ? .blue : .black
+        
+        let detailLabel = UILabel()
+        detailLabel.numberOfLines = 0
+        detailLabel.textAlignment = .left
+        
+        detailLabel.attributedText = NSMutableAttributedString()
+            .bold(title, color, size: FontSize.boldFont)
+            .normal(value, color, size: FontSize.boldFont)
+        
+        verticalStackView.addArrangedSubview(detailLabel)
+    }
+    
+    private func cleanVerticalStackView() {
+        for view in verticalStackView.subviews {
+            view.removeFromSuperview()
+        }
     }
 }

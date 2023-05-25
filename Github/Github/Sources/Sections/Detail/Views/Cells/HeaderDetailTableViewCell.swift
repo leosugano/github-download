@@ -1,31 +1,94 @@
 //
 //  HeaderDetail.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 04/04/23.
+//  Created by Leonardo Sugano on 23/05/23.
 //
 
 import UIKit
 import SnapKit
 
+protocol HeaderDetailTableViewCellDelegate: AnyObject {
+    func didTapUserUrl(url: String?)
+}
+
 class HeaderDetailTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
-    private lazy var characterImageView: PlaceholderImageView = {
+    private lazy var userImageView: PlaceholderImageView = {
         let imageView = PlaceholderImageView(frame: .zero)
+        imageView.layer.cornerRadius = 25
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    
+    private lazy var verticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 4
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        return stackView
+    }()
+    
+    private lazy var githubLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: FontSize.regularFont)
+        label.textColor = .black
+        return label
     }()
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: FontSize.nameHeaderFont)
-        label.textColor = .red
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: FontSize.regularFont)
+        label.textColor = .black
         return label
     }()
     
-    private lazy var bottomGradientView: UIView = {
-        let view = UIView()
-        return view
+    private lazy var bioLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: FontSize.regularFont)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var blogLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: FontSize.regularFont)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var companyLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: FontSize.regularFont)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var createdLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: FontSize.regularFont)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var urlUserLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapUserUrl))
+        label.isUserInteractionEnabled = true
+        label.font = UIFont.boldSystemFont(ofSize: FontSize.boldFont)
+        label.addGestureRecognizer(tap)
+        label.textColor = .red
+        return label
     }()
     
     // MARK: - Init
@@ -39,61 +102,84 @@ class HeaderDetailTableViewCell: UITableViewCell {
         setupCell()
     }
     
-    // MARK: - Reuse
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupCell()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        bottomGradientView.setDegradeBackgroundColor(invert: true)
-    }
-    
+    // MARK: - Setup
     private func setupCell() {
         self.selectionStyle = .none
         self.addSubviews()
         self.addConstraints()
     }
     
-    func addSubviews() {
-        self.addSubview(characterImageView)
-        self.addSubview(nameLabel)
-        self.addSubview(bottomGradientView)
+    private func addSubviews() {
+        contentView.addSubview(userImageView)
+        contentView.addSubview(verticalStackView)
+        verticalStackView.addArrangedSubview(githubLabel)
+        verticalStackView.addArrangedSubview(nameLabel)
+        verticalStackView.addArrangedSubview(bioLabel)
+        verticalStackView.addArrangedSubview(blogLabel)
+        verticalStackView.addArrangedSubview(companyLabel)
+        verticalStackView.addArrangedSubview(createdLabel)
+        verticalStackView.addArrangedSubview(urlUserLabel)
     }
     
-    func addConstraints() {
+    private func addConstraints() {
         addCharacterImageViewConstraints()
-        addNameLabelConstraints()
-        addBottomGradientViewConstraint()
+        addVerticalStackViewConstraints()
     }
     
     private func addCharacterImageViewConstraints() {
-        self.characterImageView.snp.remakeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(300)
+        self.userImageView.snp.remakeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().inset(8)
+            make.height.width.equalTo(50)
         }
     }
     
-    private func addNameLabelConstraints() {
-        self.nameLabel.snp.remakeConstraints { make in
-            make.bottom.leading.trailing.equalToSuperview().inset(Margin.normalMargin)
+    private func addVerticalStackViewConstraints() {
+        verticalStackView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.top.bottom.equalToSuperview().inset(8)
+            make.leading.equalTo(userImageView.snp.trailing).offset(8)
+            make.trailing.equalToSuperview().inset(-8)
         }
     }
     
-    private func addBottomGradientViewConstraint() {
-        self.bottomGradientView.snp.remakeConstraints { make in
-            make.bottom.leading.trailing.equalToSuperview()
-            make.height.equalTo(50)
-        }
-    }
-
+    // MARK: - Vars
+    private weak var delegate: HeaderDetailTableViewCellDelegate?
+    private var user: UserResponseModel?
+    
     // MARK: - Func
-    func setupCellWithCharacter(_ character: CharacterDatasResponseModel) {
-        nameLabel.text = character.name
-        UIImage.loadImageUsingCacheWithUrlString(character.image ?? "") { [weak self] image in
+    func setupCellWithCharacter(delegate: HeaderDetailTableViewCellDelegate,
+                                user: UserResponseModel) {
+        self.setupLabel(label: githubLabel, text: user.login, subText: "User: @")
+        self.setupLabel(label: nameLabel, text: user.name, subText: "Nome: ")
+        self.setupLabel(label: bioLabel, text: user.bio, subText: "Bio: ")
+        self.setupLabel(label: blogLabel, text: user.blog, subText: "Blog: ")
+        self.setupLabel(label: companyLabel, text: user.company, subText: "Company: ")
+        self.setupLabel(label: createdLabel, text: user.createdAt?.getFormattedDate(format: Keys.isoDateFormat), subText: "Criado: ")
+        self.setupLabel(label: urlUserLabel, text: user.htmlUrl, subText: "Github: ")
+        
+        self.user = user
+        self.delegate = delegate
+        
+        UIImage.loadImageUsingCacheWithUrlString(user.avatarUrl ?? "") { [weak self] image in
             guard let self = self else { return }
-            self.characterImageView.image = image
+            self.userImageView.image = image
         }
+    }
+    
+    private func setupLabel(label: UILabel,
+                            text: String?,
+                            subText: String) {
+        guard let text = text, !text.isEmpty else {
+            label.isHidden = true
+            return
+        }
+        
+        label.text = subText + text
+        
+    }
+    
+    @objc func didTapUserUrl() {
+        delegate?.didTapUserUrl(url: user?.htmlUrl)
     }
 }

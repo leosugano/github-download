@@ -1,17 +1,14 @@
 //
 //  API.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 03/04/23.
+//  Created by Leonardo Sugano on 03/05/23.
 //
 
-import Alamofire
+import UIKit
 
-struct Keys {
-    static let BaseUrl = "https://rickandmortyapi.com/api"
-    static let caractersURL = "/character"
-    static let userDefaultNoInternet = "noInternet"
-    static let errorCodeNoDatabase = "999"
+struct Keys {  
     static let ptDateFormat = "dd/MM/yyyy"
-    static let isoDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    static let isoDateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+
 }

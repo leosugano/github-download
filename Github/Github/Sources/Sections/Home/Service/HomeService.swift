@@ -1,20 +1,14 @@
 //
 //  HomeService.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 03/04/23.
+//  Created by Leonardo Sugano on 03/05/23.
 //
 
 import Alamofire
 
 protocol HomeServiceProtocol {
-    func getCharacters(url: String,
-                       parameters: FilterSelectModel,
-                       completion: @escaping (ServiceResult<CharacterResponseModel, NetworkError>) -> Void)
-    
-    func getCharactersWithFilter(url: String,
-                                 filter: FilterSelectModel,
-                                 completion: @escaping (ServiceResult<CharacterResponseModel, NetworkError>) -> Void)
+    func getUsers(completion: @escaping (ServiceResult<[UserResponseModel], NetworkError>) -> Void)
 }
 
 class HomeService: HomeServiceProtocol {
@@ -28,51 +22,13 @@ class HomeService: HomeServiceProtocol {
     }
     
     // MARK: - Func
-    func getCharacters(url: String,
-                       parameters: FilterSelectModel,
-                       completion: @escaping (ServiceResult<CharacterResponseModel, NetworkError>) -> Void) {
+    func getUsers(completion: @escaping (ServiceResult<[UserResponseModel], NetworkError>) -> Void) {
+        let url = Url.baseUrl.rawValue + Url.genericUser.rawValue
         
-        if UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet) {
-            self.getCharacters(filter: nil, completion: completion)
-            return
-        }
+        self.provider.get(url,
+                          parameters: nil,
+                          encoding: nil,
+                          handler: completion)
         
-        self.provider.getProvider(url,
-                                  parameters: parameters.dictionary,
-                                  encoding: URLEncoding.queryString,
-                                  handler: completion)
-    }
-    
-    func getCharactersWithFilter(url: String,
-                                 filter: FilterSelectModel,
-                                 completion: @escaping (ServiceResult<CharacterResponseModel, NetworkError>) -> Void) {
-        if UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet) {
-            self.getCharacters(filter: filter, completion: completion)
-            return
-        }
-        
-        self.provider.getProvider(url,
-                                  parameters: filter.dictionary,
-                                  encoding: URLEncoding.queryString,
-                                  handler: completion)
-    }
-    
-    private func getCharacters(filter: FilterSelectModel?, completion: @escaping (ServiceResult<CharacterResponseModel, NetworkError>) -> Void) {
-        
-        let info = CharacterInfoResponseModel(count: nil, pages: nil, nextPage: nil, previousPage: nil)
-        var characters = DatabaseController.getAllCharacter()
-        
-        if let filter = filter {
-            characters = characters.filter({ value in
-                value.status?.lowercased() == filter.status?.lowercased() && (value.name?.lowercased().contains(filter.name?.lowercased() ?? "") ?? false)
-            })
-        }
-        
-        if characters.isEmpty {
-            let error: NetworkError = NetworkError(code: Keys.errorCodeNoDatabase, message: "noInternetError".localized)
-            completion(.failure(error))
-        }
-        
-        completion(.success(CharacterResponseModel(info: info, characters: characters)))
-    }
+    }   
 }

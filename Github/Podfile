@@ -7,11 +7,9 @@ inhibit_all_warnings!
 
 target 'Github' do
   pod 'Alamofire'
-  pod 'UIScrollView-InfiniteScroll', '~> 1.3.0'
   pod 'SnapKit'
   pod 'SwiftLint'
   pod 'SwiftGen', '~> 6.0'
-
 end
 
 target 'GithubTests' do

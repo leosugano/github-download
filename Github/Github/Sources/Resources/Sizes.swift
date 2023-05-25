@@ -1,13 +1,14 @@
 //
 //  ConstraintsSizes.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 04/04/23.
+//  Created by Leonardo Sugano on 23/05/23.
 //
 
 import UIKit
 
 class FontSize {
+    static let regularFont: CGFloat = 12
     static let normalFont: CGFloat = 16
     static let boldFont: CGFloat = 14
     static let titleFont: CGFloat = 20

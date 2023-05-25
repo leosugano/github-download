@@ -17,14 +17,6 @@ extension UITableView {
         return T()
     }
 
-    func reloadData(_ completion: @escaping () -> ()) {
-        UIView.animate(withDuration: 0, animations: {
-            self.reloadData()
-        }, completion: { _ in
-            completion()
-        })
-    }
-
     // MARK: - Register cell
     private func register<T: UITableViewCell>(cell: T.Type) {
         register(T.self, forCellReuseIdentifier: String(describing: T.self))

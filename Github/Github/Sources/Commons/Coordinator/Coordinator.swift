@@ -1,8 +1,8 @@
 //
 //  BaseCoordinator.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 04/04/23.
+//  Created by Leonardo Sugano on 23/05/23.
 //
 
 import UIKit

@@ -1,8 +1,8 @@
 //
 //  UIView+Extension.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 04/04/23.
+//  Created by Leonardo Sugano on 23/05/23.
 //
 
 import UIKit
@@ -18,13 +18,10 @@ extension UIView {
         gradientLayer.locations = [0.0, 1]
         gradientLayer.frame = self.bounds
         
-        removeDegradeBackground()
-        self.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    func removeDegradeBackground() {
         if (self.layer.sublayers?.first as? CAGradientLayer) != nil {
             self.layer.sublayers?.removeFirst()
         }
+
+        self.layer.insertSublayer(gradientLayer, at: 0)
     }
 }

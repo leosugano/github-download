@@ -1,8 +1,8 @@
 //
 //  ErrorView.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 05/04/23.
+//  Created by Leonardo Sugano on 05/05/23.
 //
 
 import SnapKit
@@ -24,7 +24,7 @@ class ErrorView: UIView {
         let label = UILabel()
         label.textColor = .red
         label.font = UIFont.boldSystemFont(ofSize: FontSize.titleFont)
-        label.text = "opsTitle".localized
+        label.text = "Ops"
         label.textAlignment = .center
         return label
     }()
@@ -42,13 +42,12 @@ class ErrorView: UIView {
         let button = UIButton()
         button.setTitleColor(UIColor(named: "MainColor"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: FontSize.titleFont)
-        button.setTitle("tryAgainTitle".localized, for: .normal)
+        button.setTitle("Tentar Novamente", for: .normal)
         button.addTarget(self, action: #selector(didTapTryAgain), for: .touchUpInside)
         return button
     }()
         
     // MARK: - Vars
-    weak var delegate: StoneStatusViewDelegate?
     var completionHandler: (() -> Void)?
     
     // MARK: - Inits
@@ -91,7 +90,9 @@ class ErrorView: UIView {
     }
     
     // MARK: - Setups
-    func setupErrorView(message: String?, showTryAgain: Bool, completionHandler: (() -> Void)? = nil) {
+    func setupErrorView(message: String?,
+                        showTryAgain: Bool,
+                        completionHandler: (() -> Void)? = nil) {
         self.messageLabel.text = message
         self.tryAgainButton.isHidden = !showTryAgain
         self.completionHandler = completionHandler

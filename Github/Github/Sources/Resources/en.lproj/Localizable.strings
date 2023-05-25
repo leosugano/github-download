@@ -1,37 +1,20 @@
 /* 
   Localizable.strings
-  StoneChallenge
+  Github
 
-  Created by Leonardo Sugano on 04/04/23.
+  Created by Leonardo Sugano on 23/05/23.
   
 */
 
-"characterTitle" = "Personagens";
-"filterTitle" = "Filtro";
-"filterButton" = "Filtrar";
-"statusTitle" = "Status:";
-"specieTitle" = "Espécie:";
-"typeTitle" = "Tipo:";
-"genderTitle" = "Genero:";
-"origeTitle" = "Origem:";
-"localizationTitle" = "Localização:";
-"createdTitle" = "Criado em:";
-"alertTitle" = "Alerta!";
-"alertYes" = "Sim";
-"alertNo" = "Não";
-"alertRemoveFilterTitle" = "Você deseja remover o filtro?";
+"characterTitle" = "Home Usuarios";
+"filterTitle" = "Pesquisa";
+"filterButton" = "Pesquisar";
 "tryAgainTitle" = "Tentar novamente";
 "opsTitle" = "Ops!";
 "ok" = "Ok";
-"fillFieldsError" = "Preencha os campos!";
 "fillNameFieldError" = "Adicione um Nome";
-"statusFieldError" = "Selecione um Status";
 "unexpectedError" = "Algo inesperado aconteceu!";
 "obligateField" = "Campo Obrigatório";
-"alive" = "alive";
-"dead" = "dead";
-"unknown" = "unknown";
-"name" = "Nome";
 "noInternetError" = "Sem internet para encontrar o valor colocado nos dados armazenados";
 "lastDatasMessage" = "Você já está com os últimos dados";
 "turnOnInternet" = "Para atualizar com mais dados ligue a sua internet";

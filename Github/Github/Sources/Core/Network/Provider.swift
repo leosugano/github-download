@@ -1,8 +1,8 @@
 //
 //  AlamofireRequests.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 03/04/23.
+//  Created by Leonardo Sugano on 03/05/23.
 //
 
 import Alamofire
@@ -11,13 +11,11 @@ class Provider {
     
     // MARK: - Constants
     
-    func getProvider<T: Codable>(_ url: String,
-                                 parameters: Parameters?,
-                                 encoding: ParameterEncoding?,
-                                 handler: @escaping (ServiceResult<T, NetworkError>) -> Void) {
-        
-        let url = Keys.BaseUrl + url
-        
+    func get<T: Codable>(_ url: String,
+                         parameters: Parameters?,
+                         encoding: ParameterEncoding?,
+                         handler: @escaping (ServiceResult<T, NetworkError>) -> Void) {
+                
         Network.send(url: url, method: .get, parameters: parameters, encoding: encoding) { data in
             ResultMapper.resultMap(data: data, handler: handler)
             

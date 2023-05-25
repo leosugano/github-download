@@ -1,8 +1,8 @@
 //
 //  AppCoordinator.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 04/04/23.
+//  Created by Leonardo Sugano on 23/05/23.
 //
 
 import UIKit
@@ -14,9 +14,6 @@ class AppCoordinator: Coordinator {
     var children: [Coordinator] = []
     var navigationController: UINavigationController
     
-    // MARK: - ViewControllers
-    var homeViewModel: HomeViewModel?
-
     // MARK: - Init
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -27,36 +24,34 @@ class AppCoordinator: Coordinator {
         goToHomeViewController()
     }
     
-    func goToHomeViewController(homeViewModel: HomeViewModel = HomeViewModel()) {
-        homeViewModel.coordinator = self
-        self.homeViewModel = homeViewModel
+    func goToHomeViewController(homeViewModel: HomeViewModelProvider = HomeViewModel()) {
+        homeViewModel.setCoordinator(coordinator: self)
         
         let homeViewController = HomeViewController(viewModel: homeViewModel)
         self.navigationController.pushViewController(homeViewController, animated: true)
     }
     
-    func goToDetailsViewController(detailViewModel: DetailViewModel = DetailViewModel(), _ character: CharacterDatasResponseModel?) {
+    func goToDetailsViewController(detailViewModel: UserDetailViewModelProvider = UserDetailViewModel(),
+                                   _ userName: String?) {
         
-        detailViewModel.coordinator = self
-        detailViewModel.setCharacter(character)
-        let detailViewController = DetailViewController(viewModel: detailViewModel)
+        detailViewModel.setCoordinator(coordinator: self)
+        detailViewModel.setUserName(userName: userName)
+        let detailViewController = UserDetailViewController(viewModel: detailViewModel)
         
         self.navigationController.pushViewController(detailViewController, animated: true)
     }
     
-    func goToFilterViewController() {
-        let filterViewModel = FilterViewModel()
-        filterViewModel.coordinator = self
+    func goToFilterViewController(searchViewModel: SearchViewModelProvider = SearchViewModel()) {
+        searchViewModel.setCoordinator(coordinator: self)
+        let searchViewController = SearchViewController(viewModel: searchViewModel)
         
-        let filterViewController = FilterViewController(viewModel: filterViewModel)
-        
-        self.navigationController.pushViewController(filterViewController, animated: true)
+        self.navigationController.pushViewController(searchViewController, animated: true)
     }
     
-    func popFilterViewWithValues(values: FilterSelectModel) {
-        self.navigationController.popViewControllerWithHandler { 
-            self.homeViewModel?.updateFilterValues(values)
-            self.homeViewModel?.getDatas()
+    func openUserURL(url: String?) {
+        guard let url = url else { return }
+        if let url = URL(string: url) {
+            UIApplication.shared.open(url)
         }
     }
     
@@ -65,15 +60,11 @@ class AppCoordinator: Coordinator {
     }
     
     func showAlert(message: String,
-                   showPositiveButton: Bool = true,
-                   titlePositiveButton: String = "alertYes".localized,
-                   showNegativeButton: Bool = true,
+                   titlePositiveButton: String = "",
                    _ completion: (() -> Void)? = nil) {
         
         let alert = UIAlertController.createAlert(message: message,
-                                                  showPositiveButton: showPositiveButton,
-                                                  titlePositiveButton: titlePositiveButton,
-                                                  showNegativeButton: showNegativeButton) {
+                                                  titlePositiveButton: titlePositiveButton) {
             completion?()
         }
         self.navigationController.present(alert, animated: true)

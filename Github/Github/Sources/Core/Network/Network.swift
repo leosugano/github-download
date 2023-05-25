@@ -1,8 +1,8 @@
 //
 //  BaseNetwork.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 03/04/23.
+//  Created by Leonardo Sugano on 03/05/23.
 //
 
 import Alamofire

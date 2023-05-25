@@ -14,11 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-            
         self.startApp()
         
-        let navigationController = UINavigationController()
-        navigationController.setNavigationBarHidden(true, animated: false)
+        let navigationController = GithubNavigationViewController()
+        navigationController.setNavigationBarHidden(false, animated: false)
         appCoordinator = AppCoordinator(navigationController: navigationController)
         appCoordinator?.start()
 

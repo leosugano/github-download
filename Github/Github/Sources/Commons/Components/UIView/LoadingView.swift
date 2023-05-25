@@ -1,8 +1,8 @@
 //
 //  LoadingView.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 05/04/23.
+//  Created by Leonardo Sugano on 05/05/23.
 //
 
 import UIKit
@@ -13,9 +13,9 @@ class LoadingView: UIView {
     let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Inits
-    init(color: UIColor = UIColor(named: "MainColor") ?? .blue) {
-        super.init(frame: CGRect.getRectForApp())
-        addSubviews(color: color)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubviews(color: .black)
         setBackgroundColor()
     }
     

@@ -1,15 +1,17 @@
 //
 //  DetailService.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 04/04/23.
+//  Created by Leonardo Sugano on 23/05/23.
 //
 
 import Alamofire
 
 protocol DetailServiceProtocol {
-    func getCharacterDetail(url: String, id: Int,
-                            completion: @escaping (ServiceResult<CharacterDatasResponseModel, NetworkError>) -> Void)
+    func getUserDetail(userName: String,
+                       completion: @escaping (ServiceResult<UserResponseModel, NetworkError>) -> Void)
+    func getUserRepos(userName: String,
+                      completion: @escaping (ServiceResult<[UserRepositoryResponseViewModel], NetworkError>) -> Void)
 }
 
 class DetailService: DetailServiceProtocol {
@@ -23,25 +25,25 @@ class DetailService: DetailServiceProtocol {
     }
     
     // MARK: - Func
-    func getCharacterDetail(url: String,
-                            id: Int,
-                            completion: @escaping (ServiceResult<CharacterDatasResponseModel, NetworkError>) -> Void) {
+    func getUserDetail(userName: String,
+                       completion: @escaping (ServiceResult<UserResponseModel, NetworkError>) -> Void) {
         
-        if UserDefaults.standard.bool(forKey: Keys.userDefaultNoInternet) {
-            
-            guard let character = DatabaseController.getCharacterById(id) else {
-                let error: NetworkError = NetworkError(code: Keys.errorCodeNoDatabase, message: "noInternetError".localized)
-                completion(.failure(error))
-                return
-            }
-            completion(.success(character))
-            return
-        }
+        let url = Url.baseUrl.rawValue + Url.genericUser.rawValue + "/" + userName
         
-        self.provider.getProvider(url + "/\(id)",
-                                  parameters: nil,
-                                  encoding: nil,
-                                  handler: completion)
+        self.provider.get(url,
+                          parameters: nil,
+                          encoding: nil,
+                          handler: completion)
     }
     
+    func getUserRepos(userName: String,
+                      completion: @escaping (ServiceResult<[UserRepositoryResponseViewModel], NetworkError>) -> Void) {
+        
+        let url = Url.baseUrl.rawValue + Url.genericUser.rawValue + "/" + userName + Url.repo.rawValue
+        
+        self.provider.get(url,
+                          parameters: nil,
+                          encoding: nil,
+                          handler: completion)
+    }
 }

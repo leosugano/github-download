@@ -1,8 +1,8 @@
 //
 //  ResultMapper.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 03/04/23.
+//  Created by Leonardo Sugano on 03/05/23.
 //
 
 import Alamofire
@@ -17,10 +17,21 @@ class ResultMapper {
     static func resultMap<T: Codable>(data: Data,      
                                       handler: (ServiceResult<T, NetworkError>) -> Void) {
         do {
-            guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let jsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+            let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            let jsonArray = try JSONSerialization.jsonObject(with: data) as? [[String: Any]]
+            var jsonData: Data?
+            
+            if let jsonObject = jsonObject {
+                jsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+            }
+            
+            if let jsonArray = jsonArray {
+                jsonData = try? JSONSerialization.data(withJSONObject: jsonArray, options: .prettyPrinted)
+            }
+            
+            guard let jsonData = jsonData else {
                 handler(.failure(NetworkError(code: "500",
-                                              message: "unexpectedError".localized)))
+                                              message: "Erro inesperado")))
                 return
             }
             
@@ -29,7 +40,7 @@ class ResultMapper {
             
         } catch {
             handler(.failure(NetworkError(code: "500",
-                                          message: "unexpectedError".localized)))
+                                          message: "Erro inesperado")))
             return
         }
     }

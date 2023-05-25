@@ -1,22 +1,20 @@
 //
 //  String+Extension.swift
-//  StoneChallenge
+//  Github
 //
-//  Created by Leonardo Sugano on 04/04/23.
+//  Created by Leonardo Sugano on 23/05/23.
 //
 
 import Foundation
 
 extension String {
-    var localized: String {
-        return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
-    }
-    
-    func getDate(format: String) -> Date? {
+    func getFormattedDate(format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         let date = dateFormatter.date(from: self)
         
-        return date
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = Keys.ptDateFormat
+        return dateFormat.string(from: date ?? Date())
     }
 }
