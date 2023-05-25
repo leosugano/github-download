@@ -1,0 +1,15 @@
+# 1
+input_dir: Github/
+# 2
+output_dir: Github/Generated/
+## Strings
+strings:
+  inputs:
+    # 1
+    - Sources/Resources/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      # 2
+      params:
+        publicAccess: true
+      output: Strings+Generated.swift
