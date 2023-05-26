@@ -98,6 +98,7 @@ extension HomeViewController: HomeViewModelDelegate {
     
     func loadView(_ load: Bool) {
         self.showLoading(load)
+        layout?.stopLoading()
     }
 }
 

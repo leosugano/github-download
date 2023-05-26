@@ -28,7 +28,7 @@ class SearchViewControllerLayout: UIView {
         button.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
         button.setTitle("Procurar", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(named: "MainColor")
+        button.backgroundColor = .black
         return button
     }()
     

@@ -15,18 +15,18 @@ class LoadingView: UIView {
     // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubviews(color: .black)
+        addSubviews()
         setBackgroundColor()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        addSubviews(color: UIColor(named: "MainColor") ?? .blue)
+        addSubviews()
     }
     
     // MARK: - Set Constraints
-    private func addSubviews(color: UIColor) {
-        spinner.color = color
+    private func addSubviews() {
+        spinner.color = .black
         self.addSubview(spinner)
         spinner.center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
     }

@@ -76,7 +76,7 @@ class HomeViewModel: HomeViewModelProvider {
     
     // MARK: - Actions
     func didTapSearchButton() {
-        self.coordinator?.goToFilterViewController()
+        self.coordinator?.goToSearchViewController()
     }
     
     func didSelectUser(_ indexPath: IndexPath) {

@@ -41,7 +41,7 @@ class AppCoordinator: Coordinator {
         self.navigationController.pushViewController(detailViewController, animated: true)
     }
     
-    func goToFilterViewController(searchViewModel: SearchViewModelProvider = SearchViewModel()) {
+    func goToSearchViewController(searchViewModel: SearchViewModelProvider = SearchViewModel()) {
         searchViewModel.setCoordinator(coordinator: self)
         let searchViewController = SearchViewController(viewModel: searchViewModel)
         
@@ -53,10 +53,6 @@ class AppCoordinator: Coordinator {
         if let url = URL(string: url) {
             UIApplication.shared.open(url)
         }
-    }
-    
-    func popViewController() {
-        self.navigationController.popViewController(animated: true)
     }
     
     func showAlert(message: String,

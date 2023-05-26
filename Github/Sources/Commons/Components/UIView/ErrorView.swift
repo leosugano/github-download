@@ -40,7 +40,7 @@ class ErrorView: UIView {
     
     private lazy var tryAgainButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(UIColor(named: "MainColor"), for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: FontSize.titleFont)
         button.setTitle("Tentar Novamente", for: .normal)
         button.addTarget(self, action: #selector(didTapTryAgain), for: .touchUpInside)
@@ -52,7 +52,7 @@ class ErrorView: UIView {
     
     // MARK: - Inits
     init() {
-        super.init(frame: CGRect.getRectForApp())
+        super.init(frame: UIScreen.main.bounds)
         addSubviews()
         setConstraints()
         setBackgroundColor()

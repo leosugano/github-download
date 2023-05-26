@@ -10,5 +10,4 @@ import UIKit
 struct Keys {  
     static let ptDateFormat = "dd/MM/yyyy"
     static let isoDateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-
 }

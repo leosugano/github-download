@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol SearchViewModelDelegate: AnyObject {
-    
-}
-
 protocol SearchViewModelProvider: AnyObject {
     func setCoordinator(coordinator: AppCoordinator)
     func didTapSearch(userName: String?)
@@ -19,8 +15,7 @@ protocol SearchViewModelProvider: AnyObject {
 class SearchViewModel: SearchViewModelProvider {
         
     // MARK: - Var
-    weak var delegate: SearchViewModelDelegate?
-    weak var coordinator: AppCoordinator?
+    private weak var coordinator: AppCoordinator?
         
     // MARK: - SearchViewModelProvider - Sets
     func setCoordinator(coordinator: AppCoordinator) {
@@ -28,7 +23,6 @@ class SearchViewModel: SearchViewModelProvider {
     }
     
     // MARK: - Routing
-   
     func didTapSearch(userName: String?) {
         if userName?.isEmpty ?? true {
             let messageError = "Preencha o campo userName, ele é obrigatório"

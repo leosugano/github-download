@@ -28,14 +28,14 @@ extension NSMutableAttributedString {
         return self
     }
     
-    func getNormalFont(fontSize: CGFloat?) -> UIFont {
+    private func getNormalFont(fontSize: CGFloat?) -> UIFont {
         guard let fontSize = fontSize else {
             return UIFont.systemFont(ofSize: 16, weight: .regular)
         }
         return UIFont.systemFont(ofSize: fontSize, weight: .regular)
     }
     
-    func getBoldFont(fontSize: CGFloat?) -> UIFont {
+    private func getBoldFont(fontSize: CGFloat?) -> UIFont {
         guard let fontSize = fontSize else {
             return UIFont.systemFont(ofSize: 16, weight: .bold)
         }

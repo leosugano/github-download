@@ -25,7 +25,7 @@ class HomeViewControllerLayout: UIView {
     
     private lazy var refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
-        refresh.tintColor = UIColor(named: "MainColor")
+        refresh.tintColor = .black
         refresh.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
         return refresh
     }()
@@ -79,21 +79,15 @@ class HomeViewControllerLayout: UIView {
                         tableViewDataSource: UITableViewDataSource) {
         tableView.dataSource = tableViewDataSource
         tableView.delegate = tableViewDelegate
-        tableView.refreshControl = self.refreshControl
+        tableView.refreshControl = refreshControl
     }
-    
-//    func setupNavigationBar(hasFilter: Bool) {
-//        let icon = hasFilter ? UIImage(named: "ic-clear-filter") : UIImage(named: "ic-filter")
-//        
-//        
-//        self.navigationBar.setupNavigationBar(L10n.characterTitle,
-//                                              showLeftButton: false,
-//                                              showRightButton: true,
-//                                              rightIcon: icon)
-//    }
     
     func reloadData() {
         tableView.reloadData()
+    }
+    
+    func stopLoading() {
+        refreshControl.endRefreshing()
     }
     
     @objc private func didRefresh() {

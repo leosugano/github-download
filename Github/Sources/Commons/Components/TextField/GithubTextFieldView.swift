@@ -151,7 +151,7 @@ class GithubTextFieldView: UIView, UITextFieldDelegate {
     }
     
     private func updateSelectView(_ itsSelected: Bool) {
-        let color = itsSelected ? UIColor(named: "MainColor") : .gray
+        let color: UIColor = itsSelected ? .black : .gray
         self.selectLineView.backgroundColor = color
     }
     

@@ -87,7 +87,7 @@ class HeaderDetailTableViewCell: UITableViewCell {
         label.isUserInteractionEnabled = true
         label.font = UIFont.boldSystemFont(ofSize: FontSize.boldFont)
         label.addGestureRecognizer(tap)
-        label.textColor = .red
+        label.textColor = .blue
         return label
     }()
     

@@ -34,6 +34,7 @@ class UserDetailViewModel: UserDetailViewModelProvider {
     private var userRepository: [UserRepositoryResponseViewModel] = []
     private weak var delegate: UserDetailViewModelDelegate?
     private var coordinator: AppCoordinator?
+    private var errorCalled: Bool = false
     
     // MARK: - Init
     init(homeService: DetailServiceProtocol = DetailService()) {
@@ -59,8 +60,10 @@ class UserDetailViewModel: UserDetailViewModelProvider {
         
         group.notify(queue: .main) { [weak self] in
             guard let self = self else { return }
-            self.delegate?.loadView(false)
-            self.delegate?.displayDetail()
+            if !self.errorCalled {
+                self.delegate?.loadView(false)
+                self.delegate?.displayDetail()
+            }
         }
     }
     
@@ -72,8 +75,10 @@ class UserDetailViewModel: UserDetailViewModelProvider {
                 self.user = response
                 completion()
             case .failure(let error):
+                if !self.errorCalled {
+                    self.getErrorWithDetail(error)
+                }
                 completion()
-                self.getErrorWithDetail(error)
             }
         })
     }
@@ -86,13 +91,16 @@ class UserDetailViewModel: UserDetailViewModelProvider {
                 self.userRepository = response
                 completion()
             case .failure(let error):
+                if !self.errorCalled {
+                    self.getErrorWithDetail(error)
+                }
                 completion()
-                self.getErrorWithDetail(error)
             }
         })
     }
     
     private func getErrorWithDetail(_ error: NetworkError) {
+        self.errorCalled = true
         coordinator?.showErrorView(error.message, showTryAgainButton: true, completion: {
             self.getDetail()
         })
