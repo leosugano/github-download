@@ -1,0 +1,24 @@
+
+name: Build and Test
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+jobs:
+  buildAndTest:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: Pods
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pods-
+    - name: CocoaPod Install
+      run: pod install
+    - name: Build
+      run: xcodebuild -workspace Github.xcworkspace -scheme Github -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12'
+    - name: Test
+      run: xcodebuild -workspace Github.xcworkspace -scheme Github -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
