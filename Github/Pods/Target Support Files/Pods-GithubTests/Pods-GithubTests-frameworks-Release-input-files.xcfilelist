@@ -1,4 +1,0 @@
-${PODS_ROOT}/Target Support Files/Pods-GithubTests/Pods-GithubTests-frameworks.sh
-${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework
-${BUILT_PRODUCTS_DIR}/Quick/Quick.framework
-${BUILT_PRODUCTS_DIR}/SnapshotTesting/SnapshotTesting.framework

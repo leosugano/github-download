@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  Github
+
+  Created by Leonardo Sugano on 23/05/23.
+  
+*/
+
+"home" = "Home Usuários";
+"username" = "Username: ";
+"github" = "Github: ";
+"detailUser" = "Detalhes do Usuário";
+"serchTitle" = "Pesquisa";
+"tryAgainTitle" = "Tentar novamente";
+"opsTitle" = "Ops!";
+"ok" = "Ok";
+"fillNameFieldError" = "Adicione um UserName";
+"obligateField" = "Campo Obrigatório";
+"repoName" = "Repo Nome: ";
+"completeName" = "Nome completo: ";
+"desc" = "Desc: ";
+"createAt" = "Criado: ";
+"lisence" = "Licença: ";
+"url" = "URL: ";
+"user" = "User: @";
+"name" = "Nome: ";
+"bio" = "Bio: ";
+"blog" = "Blog: ";
+"company" = "Compania: ";
+"search" = "Procurar";
+"errorField" = "Preencha o campo userName, ele é obrigatório";
+"obligatefield" = "Campo obrigatório";
+"unexpectError" = "Erro inesperado";
