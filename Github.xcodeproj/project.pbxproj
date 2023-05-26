@@ -36,6 +36,7 @@
 		E392CC822A201D480025C58F /* UserDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E392CC402A201D480025C58F /* UserDetailViewControllerTests.swift */; };
 		E392CC862A201D480025C58F /* SearchViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E392CC482A201D480025C58F /* SearchViewControllerTests.swift */; };
 		E392CC872A201D480025C58F /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E392CC492A201D480025C58F /* SearchViewModelTests.swift */; };
+		E392CC8A2A2046940025C58F /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E392CC892A2046940025C58F /* Strings+Generated.swift */; };
 		E3D9F3A92A1ED15E004B2DE3 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D9F3A82A1ED15E004B2DE3 /* Url.swift */; };
 		E3D9F3AD2A1F1F13004B2DE3 /* NSMutableString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D9F3AC2A1F1F13004B2DE3 /* NSMutableString+Extension.swift */; };
 		E3EDB0192A1C76F8001B51EE /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EDB0182A1C76F8001B51EE /* UITableView+Extension.swift */; };
@@ -129,6 +130,7 @@
 		E392CC402A201D480025C58F /* UserDetailViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		E392CC482A201D480025C58F /* SearchViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTests.swift; sourceTree = "<group>"; };
 		E392CC492A201D480025C58F /* SearchViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
+		E392CC892A2046940025C58F /* Strings+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
 		E3D9F3A82A1ED15E004B2DE3 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		E3D9F3AC2A1F1F13004B2DE3 /* NSMutableString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableString+Extension.swift"; sourceTree = "<group>"; };
 		E3EDB0182A1C76F8001B51EE /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 		E3EDB0262A1D8FC8001B51EE /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				E392CC892A2046940025C58F /* Strings+Generated.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -978,6 +981,7 @@
 				E3D9F3AD2A1F1F13004B2DE3 /* NSMutableString+Extension.swift in Sources */,
 				E3F029E52A1C667F00ADB3FC /* ErrorView.swift in Sources */,
 				E3F029BD2A1C667F00ADB3FC /* HomeViewController.swift in Sources */,
+				E392CC8A2A2046940025C58F /* Strings+Generated.swift in Sources */,
 				E3F029E42A1C667F00ADB3FC /* LoadingView.swift in Sources */,
 				E3F029CE2A1C667F00ADB3FC /* SearchViewController.swift in Sources */,
 				E3EDB0192A1C76F8001B51EE /* UITableView+Extension.swift in Sources */,

@@ -114,8 +114,8 @@ class HomeTableViewCell: UITableViewCell {
     
     func setupCell(_ user: UserResponseModel) {
         self.user = user
-        nameLabel.text = "Username: " + (user.login ?? "")
-        linkUserLabel.text = "Github: " + (user.htmlUrl ?? "")
+        nameLabel.text = L10n.username + (user.login ?? "")
+        linkUserLabel.text = L10n.github + (user.htmlUrl ?? "")
         postImageURL = user.avatarUrl
         
         UIImage.loadImageUsingCacheWithUrlString(user.avatarUrl ?? "") { [weak self] image in

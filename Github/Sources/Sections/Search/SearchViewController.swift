@@ -46,7 +46,7 @@ class SearchViewController: BaseViewController {
     }
     
     private func setupNavigationBar() {
-        self.title = "Procurar"
+        self.title = L10n.search
     }
 }
 

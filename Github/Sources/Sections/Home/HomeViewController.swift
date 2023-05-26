@@ -54,7 +54,7 @@ class HomeViewController: BaseViewController {
     }
     
     private func setupNavigationBar() {
-        title = "Home"
+        title = L10n.home
         let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchTapped))
         navigationItem.rightBarButtonItem = searchButton
     }

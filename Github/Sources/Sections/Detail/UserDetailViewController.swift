@@ -50,7 +50,7 @@ class UserDetailViewController: BaseViewController {
     }
     
     private func setupNavigationBar() {
-        self.title = "Detalhes do Usuário"
+        self.title = L10n.detailUser
     }
 }
 

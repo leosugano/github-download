@@ -150,13 +150,13 @@ class HeaderDetailTableViewCell: UITableViewCell {
     // MARK: - Func
     func setupCellWithCharacter(delegate: HeaderDetailTableViewCellDelegate,
                                 user: UserResponseModel) {
-        self.setupLabel(label: githubLabel, text: user.login, subText: "User: @")
-        self.setupLabel(label: nameLabel, text: user.name, subText: "Nome: ")
-        self.setupLabel(label: bioLabel, text: user.bio, subText: "Bio: ")
-        self.setupLabel(label: blogLabel, text: user.blog, subText: "Blog: ")
-        self.setupLabel(label: companyLabel, text: user.company, subText: "Company: ")
-        self.setupLabel(label: createdLabel, text: user.createdAt?.getFormattedDate(format: Keys.isoDateFormat), subText: "Criado: ")
-        self.setupLabel(label: urlUserLabel, text: user.htmlUrl, subText: "Github: ")
+        self.setupLabel(label: githubLabel, text: user.login, subText: L10n.user)
+        self.setupLabel(label: nameLabel, text: user.name, subText: L10n.name)
+        self.setupLabel(label: bioLabel, text: user.bio, subText: L10n.bio)
+        self.setupLabel(label: blogLabel, text: user.blog, subText: L10n.blog)
+        self.setupLabel(label: companyLabel, text: user.company, subText: L10n.company)
+        self.setupLabel(label: createdLabel, text: user.createdAt?.getFormattedDate(format: Keys.isoDateFormat), subText: L10n.createAt)
+        self.setupLabel(label: urlUserLabel, text: user.htmlUrl, subText: L10n.github)
         
         self.user = user
         self.delegate = delegate

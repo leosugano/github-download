@@ -26,7 +26,7 @@ class SearchViewControllerLayout: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 22
         button.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
-        button.setTitle("Procurar", for: .normal)
+        button.setTitle(L10n.search, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
         return button

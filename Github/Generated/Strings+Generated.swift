@@ -10,33 +10,59 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum L10n {
+  /// Bio: 
+  public static let bio = L10n.tr("Localizable", "bio", fallback: "Bio: ")
+  /// Blog: 
+  public static let blog = L10n.tr("Localizable", "blog", fallback: "Blog: ")
+  /// Compania: 
+  public static let company = L10n.tr("Localizable", "company", fallback: "Compania: ")
+  /// Nome completo: 
+  public static let completeName = L10n.tr("Localizable", "completeName", fallback: "Nome completo: ")
+  /// Criado: 
+  public static let createAt = L10n.tr("Localizable", "createAt", fallback: "Criado: ")
+  /// Desc: 
+  public static let desc = L10n.tr("Localizable", "desc", fallback: "Desc: ")
+  /// Detalhes do Usuário
+  public static let detailUser = L10n.tr("Localizable", "detailUser", fallback: "Detalhes do Usuário")
+  /// Preencha o campo userName, ele é obrigatório
+  public static let errorField = L10n.tr("Localizable", "errorField", fallback: "Preencha o campo userName, ele é obrigatório")
+  /// Adicione um UserName
+  public static let fillNameFieldError = L10n.tr("Localizable", "fillNameFieldError", fallback: "Adicione um UserName")
+  /// Github: 
+  public static let github = L10n.tr("Localizable", "github", fallback: "Github: ")
   /// Localizable.strings
   ///   Github
   /// 
   ///   Created by Leonardo Sugano on 23/05/23.
-  public static let characterTitle = L10n.tr("Localizable", "characterTitle", fallback: "Home Usuarios")
-  /// Adicione um Nome
-  public static let fillNameFieldError = L10n.tr("Localizable", "fillNameFieldError", fallback: "Adicione um Nome")
-  /// Pesquisar
-  public static let filterButton = L10n.tr("Localizable", "filterButton", fallback: "Pesquisar")
-  /// Pesquisa
-  public static let filterTitle = L10n.tr("Localizable", "filterTitle", fallback: "Pesquisa")
-  /// Você já está com os últimos dados
-  public static let lastDatasMessage = L10n.tr("Localizable", "lastDatasMessage", fallback: "Você já está com os últimos dados")
-  /// Sem internet para encontrar o valor colocado nos dados armazenados
-  public static let noInternetError = L10n.tr("Localizable", "noInternetError", fallback: "Sem internet para encontrar o valor colocado nos dados armazenados")
+  public static let home = L10n.tr("Localizable", "home", fallback: "Home Usuários")
+  /// Licença: 
+  public static let lisence = L10n.tr("Localizable", "lisence", fallback: "Licença: ")
+  /// Nome: 
+  public static let name = L10n.tr("Localizable", "name", fallback: "Nome: ")
+  /// Campo obrigatório
+  public static let obligatefield = L10n.tr("Localizable", "obligatefield", fallback: "Campo obrigatório")
   /// Campo Obrigatório
   public static let obligateField = L10n.tr("Localizable", "obligateField", fallback: "Campo Obrigatório")
   /// Ok
   public static let ok = L10n.tr("Localizable", "ok", fallback: "Ok")
   /// Ops!
   public static let opsTitle = L10n.tr("Localizable", "opsTitle", fallback: "Ops!")
+  /// Repo Nome: 
+  public static let repoName = L10n.tr("Localizable", "repoName", fallback: "Repo Nome: ")
+  /// Procurar
+  public static let search = L10n.tr("Localizable", "search", fallback: "Procurar")
+  /// Pesquisa
+  public static let serchTitle = L10n.tr("Localizable", "serchTitle", fallback: "Pesquisa")
   /// Tentar novamente
   public static let tryAgainTitle = L10n.tr("Localizable", "tryAgainTitle", fallback: "Tentar novamente")
-  /// Para atualizar com mais dados ligue a sua internet
-  public static let turnOnInternet = L10n.tr("Localizable", "turnOnInternet", fallback: "Para atualizar com mais dados ligue a sua internet")
-  /// Algo inesperado aconteceu!
-  public static let unexpectedError = L10n.tr("Localizable", "unexpectedError", fallback: "Algo inesperado aconteceu!")
+  /// Erro inesperado
+  public static let unexpectError = L10n.tr("Localizable", "unexpectError", fallback: "Erro inesperado")
+  /// URL: 
+  public static let url = L10n.tr("Localizable", "url", fallback: "URL: ")
+  /// User: @
+  public static let user = L10n.tr("Localizable", "user", fallback: "User: @")
+  /// Username: 
+  public static let username = L10n.tr("Localizable", "username", fallback: "Username: ")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

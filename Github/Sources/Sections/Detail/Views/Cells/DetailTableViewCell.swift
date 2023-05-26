@@ -85,12 +85,12 @@ class DetailTableViewCell: UITableViewCell {
         self.repo = repo
 
         cleanVerticalStackView()
-        createLabel(title: "Repo Nome: ", value: repo.nameRepo)
-        createLabel(title: "Nome completo: ", value: repo.fullName)
-        createLabel(title: "Desc: ", value: repo.desc)
-        createLabel(title: "Criado: ", value: repo.createdAt?.getFormattedDate(format: Keys.isoDateFormat))
-        createLabel(title: "Licença: ", value: repo.license?.name)
-        createLabel(title: "URL: ", value: repo.svnUrl, didTap: true)
+        createLabel(title: L10n.repoName, value: repo.nameRepo)
+        createLabel(title: L10n.completeName, value: repo.fullName)
+        createLabel(title: L10n.desc, value: repo.desc)
+        createLabel(title: L10n.createAt, value: repo.createdAt?.getFormattedDate(format: Keys.isoDateFormat))
+        createLabel(title: L10n.lisence, value: repo.license?.name)
+        createLabel(title: L10n.url, value: repo.svnUrl, didTap: true)
     }
     
     private func createLabel(title: String, value: String?, didTap: Bool = false) {

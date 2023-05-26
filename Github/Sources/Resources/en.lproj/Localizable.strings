@@ -6,15 +6,28 @@
   
 */
 
-"characterTitle" = "Home Usuarios";
-"filterTitle" = "Pesquisa";
-"filterButton" = "Pesquisar";
+"home" = "Home Usuários";
+"username" = "Username: ";
+"github" = "Github: ";
+"detailUser" = "Detalhes do Usuário";
+"serchTitle" = "Pesquisa";
 "tryAgainTitle" = "Tentar novamente";
 "opsTitle" = "Ops!";
 "ok" = "Ok";
-"fillNameFieldError" = "Adicione um Nome";
-"unexpectedError" = "Algo inesperado aconteceu!";
+"fillNameFieldError" = "Adicione um UserName";
 "obligateField" = "Campo Obrigatório";
-"noInternetError" = "Sem internet para encontrar o valor colocado nos dados armazenados";
-"lastDatasMessage" = "Você já está com os últimos dados";
-"turnOnInternet" = "Para atualizar com mais dados ligue a sua internet";
+"repoName" = "Repo Nome: ";
+"completeName" = "Nome completo: ";
+"desc" = "Desc: ";
+"createAt" = "Criado: ";
+"lisence" = "Licença: ";
+"url" = "URL: ";
+"user" = "User: @";
+"name" = "Nome: ";
+"bio" = "Bio: ";
+"blog" = "Blog: ";
+"company" = "Compania: ";
+"search" = "Procurar";
+"errorField" = "Preencha o campo userName, ele é obrigatório";
+"obligatefield" = "Campo obrigatório";
+"unexpectError" = "Erro inesperado";

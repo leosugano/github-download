@@ -42,7 +42,7 @@ class ErrorView: UIView {
         let button = UIButton()
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: FontSize.titleFont)
-        button.setTitle("Tentar Novamente", for: .normal)
+        button.setTitle(L10n.tryAgainTitle, for: .normal)
         button.addTarget(self, action: #selector(didTapTryAgain), for: .touchUpInside)
         return button
     }()

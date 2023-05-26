@@ -18,7 +18,7 @@ class GithubTextFieldView: UIView, UITextFieldDelegate {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.text = "Username"
+        label.text = L10n.username
         label.textColor = .lightGray
         return label
     }()
@@ -41,7 +41,7 @@ class GithubTextFieldView: UIView, UITextFieldDelegate {
         label.textColor = .red
         label.isHidden = true
         label.font = UIFont.systemFont(ofSize: FontSize.boldFont, weight: .bold)
-        label.text = "Campo obrigatório"
+        label.text = L10n.obligatefield
         return label
     }()
     

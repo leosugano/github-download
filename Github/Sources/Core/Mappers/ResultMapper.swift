@@ -31,7 +31,7 @@ class ResultMapper {
             
             guard let jsonData = jsonData else {
                 handler(.failure(NetworkError(code: "500",
-                                              message: "Erro inesperado")))
+                                              message: L10n.unexpectError)))
                 return
             }
             
@@ -40,7 +40,7 @@ class ResultMapper {
             
         } catch {
             handler(.failure(NetworkError(code: "500",
-                                          message: "Erro inesperado")))
+                                          message: L10n.unexpectError)))
             return
         }
     }

@@ -25,9 +25,9 @@ class SearchViewModel: SearchViewModelProvider {
     // MARK: - Routing
     func didTapSearch(userName: String?) {
         if userName?.isEmpty ?? true {
-            let messageError = "Preencha o campo userName, ele é obrigatório"
+            let messageError = L10n.fillNameFieldError
             self.coordinator?.showAlert(message: messageError,
-                                        titlePositiveButton: "ok")
+                                        titlePositiveButton: L10n.ok)
         } else {
             coordinator?.goToDetailsViewController(userName)
         }

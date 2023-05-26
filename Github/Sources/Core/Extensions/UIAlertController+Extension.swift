@@ -13,7 +13,7 @@ extension UIAlertController {
                            titlePositiveButton: String,
                            completion: (() -> Void)? = nil) -> UIAlertController {
         
-        let alert = UIAlertController(title: "Ops!", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: L10n.opsTitle, message: message, preferredStyle: .alert)
         alert.view.backgroundColor = .white
         
         alert.addAction(UIAlertAction(title: titlePositiveButton,
