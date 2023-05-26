@@ -15,4 +15,4 @@ jobs:
       - name: Force XCode 14.2
         run: sudo xcode-select -switch /Applications/Xcode_14.2.app
       - name: Testing iOS app
-        run: exec ./.github/scripts/test_app.sh
+        run: exec ./.github/workflows/test_app.sh
