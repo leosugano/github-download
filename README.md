@@ -20,15 +20,18 @@ O projeto consiste em um desenvolvimento de um aplicativo iOS em Swift. Consumin
 # Funcionalidades Parte 1 Home
 
 Listagem de usuarios no generico
+
 ![Gravação de Tela 2023-05-25 às 23 56 24](https://github.com/leosugano/github-download/assets/19223259/7093afa5-bb60-4786-8389-ecbb7901b138)
 
 # Funcionalidades Parte 2 busca de usuario
 
 Agora temos a tela de busca para podermos fazer um search em qualquer user do github que queremos.
-![gif da funcionalidad![search](https://github.com/leosugano/github-download/assets/19223259/6833116a-aca1-4eca-86a8-8527bdbf472d)
+![search](https://github.com/leosugano/github-download/assets/19223259/e4910b47-073e-4b16-a278-da58ec0932b2)
+
 
 # Funcionalidades Parte 3 Detalhes do usuario
 Ao clicar em um usuario, navegue para tela de detalhes foi exibido o usuario mais os repositórios que ele continha.
+
 ![Detail](https://github.com/leosugano/github-download/assets/19223259/3cf6a996-5c4f-4d4e-9122-9ef5aaf460f2)
 
 
